@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import config from "config";
+import mongoose from 'mongoose';
+import config from 'config';
 
 //get connection string
 const db = config.get('mongoURI');
@@ -19,4 +19,4 @@ const connectDatabase = async () => {
     }
 };
 
-export default connectDatabaase;
+export default connectDatabase;

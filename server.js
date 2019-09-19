@@ -1,9 +1,13 @@
 import express from 'express';
-//const express = require('express)
+import connectDatabase from './config/db.js';
+
+//const express = require('express');
+//const db = require('config/db.js');
 //old syntax, its weird, import is more concise
 
 //init express app - calling a function
 const app = express();
+connectDatabase();
 
 //API endpoints
 app.get('/', (req, res) => 
