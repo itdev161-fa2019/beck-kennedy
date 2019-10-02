@@ -9,7 +9,14 @@ import connectDatabase from './config/db.js';
 const app = express();
 connectDatabase();
 
+//middleware
+app.use(express.json({extended: false}));
+
 //API endpoints
+/**
+ * @route GET /
+ * @desc Test endpoint
+ */
 app.get('/', (req, res) => 
     res.send('http get request sent to root api endpoint')
 );
@@ -19,6 +26,15 @@ app.get('/', (req, res) =>
 -takes request and response and does something; an anonymous function
 -send those params => that action
 */
+
+/**
+ * @route POST api/users
+ * @desc register users
+ */
+app.post('/api/users', (req, res) => {
+    console.log(req.body);
+    res.send(req.body);
+});
 
 //connection listener
 app.listen(3000, () => console.log('Express server running on port 3000'));
