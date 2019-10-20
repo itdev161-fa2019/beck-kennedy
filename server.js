@@ -19,7 +19,11 @@ connectDatabase();
 
 //middleware
 app.use(express.json({extended: false}));
-
+app.use(
+    cors({
+        origin: 'http://localhost:3000'
+    })
+);
 //API endpoints
 /**
  * @route GET /
