@@ -3,7 +3,10 @@ import connectDatabase from './config/db.js';
 import { check, validationResult } from 'express-validator';
 import cors from 'cors';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import config from 'config';
 import User from './models/User';
+
 
 
 //const express = require('express');
@@ -53,14 +56,14 @@ app.post(
     if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.array() });
     } else {
+        //return res.send(req.body);
         const { name, email, password} = req.body;
         try {
             //check if user exists
             let user = await User.findOne({ email: email });
             if (user) {
                 return res
-                    .status(400)
-                    .json({ errors: [{ msg: 'User already exists' }] });
+                    .status(400).json({ errors: [{ msg: 'User already exists' }] });
             }
         
         //create a new user    
@@ -71,20 +74,37 @@ app.post(
         });
 
         //encrypt password
-        const salt = await bcrypt.genSalt(10);
+        const salt = await bcrypt.genSalt(10); //how many numbers to use for encryption
         user.password = await bcrypt.hash(password, salt);
 
         //save to db and return
         await user.save();
-        res.send('User sucessfully register');
+        //res.send('User sucessfully registered');
+
+        //Generate and return a JWT token
+        const payload = {
+            user: {
+                id: user.id
+            }
+        };
+
+        jwt.sign(
+            payload,
+            config.get('jwtSecret'),
+            { expiresIn: '10hr'},
+            (err, token) => {
+                if (err) throw err;
+                res.json({ token: token});
+            }
+        );
     } catch (error) {
         res.status(500).send('Server error');
         }
-        //return res.send(req.body);
     }
 }
     //res.send(req.body);
 );
 
 //connection listener
-app.listen(3000, () => console.log('Express server running on port 3000'));
+const port = 5000;
+app.listen(port, () => console.log(`Express server running on port ${port}`));
