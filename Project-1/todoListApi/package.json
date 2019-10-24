@@ -4,17 +4,25 @@
   "description": "RESTful todoListApi",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1\""
+    "test": "echo \"Error: no test specified\" && exit 1\"",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
-    "url":
+    "url": "git+https://github.com/itdev161-fa2019/beck-kennedy/tree/master/Project-1"
   },
   "keywords": [
     "RESTful",
     "API",
     "Tutorial"
   ],
-  "author": "\"olatunde garuba\"",
-  "license": "ISC"
+  "author": "olatunde garuba",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.7.6"
+  }
 }
