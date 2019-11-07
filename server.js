@@ -38,6 +38,8 @@ app.get('/', (req, res) =>
 -takes request and response and does something; an anonymous function
 -send those params => that action
 */
+app.get('/api/', (req, res) => res.send('http get request sent to api'));
+
 
 /**
  * @route POST api/users
@@ -67,7 +69,8 @@ app.post(
             let user = await User.findOne({ email: email });
             if (user) {
                 return res
-                    .status(400).json({ errors: [{ msg: 'User already exists' }] });
+                    .status(400)
+                    .json({ errors: [{ msg: 'User already exists' }] });
             }
         
         //create a new user    
