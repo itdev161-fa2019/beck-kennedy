@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import axios from 'axios';
 
 const Register = () => {
@@ -9,7 +9,7 @@ const Register = () => {
         passwordConfirm: ''
     }) ;  
     
-    const { name, email, password, passwordConfirm } = userDate;
+    const { name, email, password, passwordConfirm } = userData;
 
     const onChange = e => {
         const { name, value } = e.target;
@@ -33,7 +33,7 @@ const Register = () => {
             try {
                 const config = {
                     headers: {
-                        'content-Type': 'application/json'
+                        'Content-Type': 'application/json'
                     }
                 }
 
@@ -42,7 +42,7 @@ const Register = () => {
                 console.log(res.data);
             } catch(error) {
                 console.error(error.response.data);
-                return;
+                //return;
             }
 
         }
