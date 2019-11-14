@@ -7,7 +7,7 @@ const Register = () => {
         email: '',
         password: '',
         passwordConfirm: ''
-    }) ;  
+    });  
     
     const { name, email, password, passwordConfirm } = userData;
 
@@ -20,7 +20,7 @@ const Register = () => {
     }
 
     const register = async () => {
-        if (password!== passwordConfirm) {
+        if (password !== passwordConfirm) {
             console.log('Passwords do not match');
         }
         else {
@@ -40,11 +40,10 @@ const Register = () => {
                 const body = JSON.stringify(newUser);
                 const res = await axios.post('http://localhost:5000/api/users', body, config);
                 console.log(res.data);
-            } catch(error) {
+            } catch (error) {
                 console.error(error.response.data);
-                //return;
+                return;
             }
-
         }
     }
 
@@ -84,7 +83,7 @@ const Register = () => {
                     onChange={e => onChange(e)} />
             </div>
             <div>
-                <button onClick={() => register()}> Register </button>
+                <button onClick={() => register()}>Register</button>
             </div>
         </div>            
     )
