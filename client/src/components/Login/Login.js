@@ -11,7 +11,7 @@ const Login = ({ authenticateUser }) => {
     });
     const [errorData, setErrorData] = useState({ errors: null });
 
-    const [ email, password ] = userData;
+    const { email, password } = userData;
     const { errors } = errorData;
 
     const onChange  = e => {
